@@ -1,10 +1,10 @@
 (function(){
 
   angular
-       .module('users')
-       .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
-          UserController
+       .module('wishes')
+       .controller('WishController', [
+          'wishService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+          WishController
        ]);
 
   /**
@@ -14,22 +14,21 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q) {
+  function WishController( wishService, $mdSidenav, $mdBottomSheet, $log, $q) {
     var self = this;
 
     self.selected     = null;
-    self.users        = [ ];
-    self.selectUser   = selectUser;
-    self.toggleList   = toggleUsersList;
-    self.showContactOptions  = showContactOptions;
-
+    self.wishes        = [ ];
+    self.selectWish   = selectWish;
+    self.toggleMenu   = toggleMenu;
+   
     // Load all registered users
 
-    userService
-          .loadAllUsers()
-          .then( function( users ) {
-            self.users    = [].concat(users);
-            self.selected = users[0];
+    wishService
+          .loadAll()
+          .then( function( wishes ) {
+            self.wishes    = [].concat(wishes);
+            self.selected = wishes[0];
           });
 
     // *********************************
@@ -40,7 +39,7 @@
      * First hide the bottomsheet IF visible, then
      * hide or Show the 'left' sideNav area
      */
-    function toggleUsersList() {
+    function toggleMenu() {
       var pending = $mdBottomSheet.hide() || $q.when(true);
 
       pending.then(function(){
@@ -52,8 +51,8 @@
      * Select the current avatars
      * @param menuId
      */
-    function selectUser ( user ) {
-      self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+    function selectWish ( wish ) {
+      self.selected = angular.isNumber(wish) ? $scope.wishes[wish] : wish;
       self.toggleList();
     }
 
@@ -61,7 +60,7 @@
      * Show the bottom sheet
      */
     function showContactOptions($event) {
-        var user = self.selected;
+        var wish = self.selected;
 
         return $mdBottomSheet.show({
           parent: angular.element(document.getElementById('content')),

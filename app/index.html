@@ -41,18 +41,26 @@
       <h1>{{nav.selected}}</h1>
     </md-toolbar>
 
-    <md-content id="content">
-    <div layout="row" layout-wrap data-ng-controller="UserController as uc">
-      <md-card style="width: 300px;" data-ng-repeat="u in uc.users">
-       <img src="http://placehold.it/350x150" class="md-card-image" alt="image caption">
+    
+    <md-content layout="row" layout-wrap data-ng-controller="WishController as wc">    
+      <md-card style="width: 300px; height: 300px;" data-ng-repeat="wc in wc.wishes">
+       <img ng-src="{{wc.image}}" class="md-card-image" alt="image caption" src="http://placehold.it/350x150">
        <md-card-content>
-         <h2>{{u.name}}</h2>
+         <h2>{{wc.name}}</h2>
        </md-card-content>
       </md-card>
-    </md-content>
-    </div>
-
+    </md-content>    
+    
+  
+  <div layout="row" layout-align="end center" >
+  <md-fab-speed-dial md-direction="left" class="md-scale md-fab-bottom-right">
+      <md-fab-trigger>
+        <md-button aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="menu" ></md-icon></md-button>
+      </md-fab-trigger>
+    </md-fab-speed-dial>
   </div>
+
+  
 
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
@@ -61,7 +69,7 @@
 
     <script type="text/javascript" >
       angular
-        .module('wls', ['ngMaterial', 'users'])
+        .module('wls', ['ngMaterial', 'wishes'])
         .config(function($mdThemingProvider, $mdIconProvider){
           $mdIconProvider
           .defaultIconSet("./assets/svg/avatars.svg", 128)
@@ -79,9 +87,9 @@
       </script>
 
     <script src="./src/core/NavigationController.js"></script>
-    <script src="./src/users/Users.js"></script>
-    <script src="./src/users/UserController.js"></script>
-    <script src="./src/users/UserService.js"></script>
+    <script src="./src/wishes/Wishes.js"></script>
+    <script src="./src/wishes/WishController.js"></script>
+    <script src="./src/wishes/WishService.js"></script>
 
 
   </body>
