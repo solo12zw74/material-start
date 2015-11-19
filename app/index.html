@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
   <head>
-    <title>Angular Material - Starter App</title>
+    <title>Wishlist</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,21 +13,19 @@
     <link rel="stylesheet" href="assets/app.css"/>
   </head>
 
-  <body ng-app="starterApp" layout="row" ng-controller="UserController as ul">
+  <body ng-app="wls" layout="row" data-ng-controller="NavigationController as nav">
 
   <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
                 md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')">
-
-    <md-toolbar class="md-whiteframe-z1">
-      <h1>Users</h1>
+                md-is-locked-open="$mdMedia('gt-sm')"                >
+    <md-toolbar class="md-whiteframe-z1" layout="row">
+      <md-icon md-svg-icon="svg-11" class="avatar" ></md-icon> <h2>Hello</h2>
     </md-toolbar>
 
     <md-list>
-      <md-list-item ng-repeat="it in ul.users">
-          <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-            <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-            {{it.name}}
+      <md-list-item ng-repeat="menuItem in nav.menuItems">
+          <md-button ng-click="nav.selectMenuItem(menuItem)" ng-class="{'selected' : menuItem === nav.selected }">
+            {{menuItem}}
           </md-button>
       </md-list-item>
     </md-list>
@@ -36,24 +34,23 @@
 
 
   <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
-
     <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+      <md-button class="menu" hide-gt-sm ng-click="nav.toggleList()" aria-label="{{nav.selected}}">
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
-      <h1>Angular Material - Starter App</h1>
+      <h1>{{nav.selected}}</h1>
     </md-toolbar>
 
-    <md-content flex id="content">
-        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-        <h2>{{ul.selected.name}}</h2>
-        <p>{{ul.selected.content}}</p>
-
-        <md-button class="contact" md-no-ink ng-click="ul.showContactOptions($event)" aria-label="Contact User">
-          <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
-          <md-icon md-svg-icon="share"></md-icon>
-        </md-button>
-      </md-content>
+    <md-content id="content">
+    <div layout="row" layout-wrap data-ng-controller="UserController as uc">
+      <md-card style="width: 300px;" data-ng-repeat="u in uc.users">
+       <img src="http://placehold.it/350x150" class="md-card-image" alt="image caption">
+       <md-card-content>
+         <h2>{{u.name}}</h2>
+       </md-card-content>
+      </md-card>
+    </md-content>
+    </div>
 
   </div>
 
@@ -62,32 +59,30 @@
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
 
+    <script type="text/javascript" >
+      angular
+        .module('wls', ['ngMaterial', 'users'])
+        .config(function($mdThemingProvider, $mdIconProvider){
+          $mdIconProvider
+          .defaultIconSet("./assets/svg/avatars.svg", 128)
+          .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+          .icon("share"      , "./assets/svg/share.svg"       , 24)
+          .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+          .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+          .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+          .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+
+          $mdThemingProvider.theme('default')
+          .primaryPalette('blue')
+          .accentPalette('red');
+        });
+      </script>
+
+    <script src="./src/core/NavigationController.js"></script>
     <script src="./src/users/Users.js"></script>
     <script src="./src/users/UserController.js"></script>
     <script src="./src/users/UserService.js"></script>
 
-    <script type="text/javascript">
-
-          angular
-              .module('starterApp', ['ngMaterial', 'users'])
-              .config(function($mdThemingProvider, $mdIconProvider){
-
-                  $mdIconProvider
-                      .defaultIconSet("./assets/svg/avatars.svg", 128)
-                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-                      .icon("share"      , "./assets/svg/share.svg"       , 24)
-                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
-                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
-                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
-                      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
-
-                      $mdThemingProvider.theme('default')
-                          .primaryPalette('brown')
-                          .accentPalette('red');
-
-              });
-
-    </script>
 
   </body>
 </html>
