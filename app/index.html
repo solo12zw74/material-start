@@ -17,7 +17,7 @@
 
   <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
                 md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')"                >
+                md-is-locked-open="$mdMedia('gt-sm')" >
     <md-toolbar class="md-whiteframe-z1" layout="row">
       <md-icon md-svg-icon="svg-11" class="avatar" ></md-icon> <h2>Hello</h2>
     </md-toolbar>
@@ -29,9 +29,7 @@
           </md-button>
       </md-list-item>
     </md-list>
-
   </md-sidenav>
-
 
   <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
     <md-toolbar layout="row" class="md-whiteframe-z1">
@@ -41,26 +39,33 @@
       <h1>{{nav.selected}}</h1>
     </md-toolbar>
 
-    
-    <md-content layout="row" layout-wrap data-ng-controller="WishController as wc">    
-      <md-card style="width: 300px; height: 300px;" data-ng-repeat="wc in wc.wishes">
-       <img ng-src="{{wc.image}}" class="md-card-image" alt="image caption" src="http://placehold.it/350x150">
+    <div data-ng-controller="WishController as wc">
+    <md-content layout="row" layout-wrap >
+      <md-card data-ng-repeat="w in wc.wishes">
+       <img ng-src="{{w.image}}" class="md-card-image" alt="image caption">
        <md-card-content>
-         <h2>{{wc.name}}</h2>
+         <h2>{{w.name}}</h2>
        </md-card-content>
+         <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button md-accent" aria-label="Favorite">
+            <md-icon md-svg-icon="favorite"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="more"></md-icon>
+          </md-button>
+        </md-card-actions>
       </md-card>
     </md-content>    
     
   
-  <div layout="row" layout-align="end center" >
-  <md-fab-speed-dial md-direction="left" class="md-scale md-fab-bottom-right">
-      <md-fab-trigger>
-        <md-button aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="menu" ></md-icon></md-button>
-      </md-fab-trigger>
-    </md-fab-speed-dial>
-  </div>
-
-  
+    <div layout="row" layout-align="end center" >
+    <md-fab-speed-dial md-direction="left" class="md-scale md-fab-bottom-right">
+        <md-fab-trigger ng-click="wc.add()">
+          <md-button aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="menu" ></md-icon></md-button>
+        </md-fab-trigger>
+      </md-fab-speed-dial>
+    </div>
+    </div>
 
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
@@ -75,6 +80,8 @@
           .defaultIconSet("./assets/svg/avatars.svg", 128)
           .icon("menu"       , "./assets/svg/menu.svg"        , 24)
           .icon("share"      , "./assets/svg/share.svg"       , 24)
+          .icon("favorite"   , "./assets/svg/favorite.svg"    , 24)
+          .icon("more"       , "./assets/svg/more_vert.svg"   , 24)
           .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
           .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
           .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)

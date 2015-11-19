@@ -18,16 +18,17 @@
     var self = this;
 
     self.selected     = null;
-    self.wishes        = [ ];
+    self.wishes       = [ ];
     self.selectWish   = selectWish;
     self.toggleMenu   = toggleMenu;
+    self.add          = add; 
    
     // Load all registered users
 
     wishService
           .loadAll()
           .then( function( wishes ) {
-            self.wishes    = [].concat(wishes);
+            self.wishes   = [].concat(wishes);
             self.selected = wishes[0];
           });
 
@@ -54,6 +55,14 @@
     function selectWish ( wish ) {
       self.selected = angular.isNumber(wish) ? $scope.wishes[wish] : wish;
       self.toggleList();
+    }
+
+    function add(){
+      self.wishes.push({
+        name: 'Shappy',
+        image: 'http://lorempixel.com/300/200/abstract/',
+        content: 'I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly chalk and cheese. Lancashire.'
+      });
     }
 
     /**
