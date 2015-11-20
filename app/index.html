@@ -55,18 +55,11 @@
           </md-button>
         </md-card-actions>
       </md-card>
-    </md-content>    
-    
-  
-    <div layout="row" layout-align="end center" >
-    <md-fab-speed-dial md-direction="left" class="md-scale md-fab-bottom-right">
-        <md-fab-trigger ng-click="wc.add()">
-          <md-button aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="menu" ></md-icon></md-button>
-        </md-fab-trigger>
-      </md-fab-speed-dial>
+    </md-content>
+    <div style="position: fixed; right: 32px; bottom: 32px">
+      <md-button ng-click ="wc.add()" aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="menu" ></md-icon></md-button>
     </div>
     </div>
-
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
