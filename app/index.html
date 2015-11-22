@@ -48,7 +48,7 @@
        </md-card-content>
          <md-card-actions layout="row" layout-align="end center">
           <md-button class="md-icon-button md-accent" aria-label="Favorite">
-            <md-icon md-svg-icon="favorite"></md-icon>
+            <md-icon md-svg-icon="unfavorite"></md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="More">
             <md-icon md-svg-icon="more"></md-icon>
@@ -57,7 +57,7 @@
       </md-card>
     </md-content>
     <div style="position: fixed; right: 32px; bottom: 32px">
-      <md-button ng-click ="wc.add()" aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="menu" ></md-icon></md-button>
+      <md-button ng-click ="wc.add()" aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="add" ></md-icon></md-button>
     </div>
     </div>
     <script src="./bower_components/angular/angular.js"></script>
@@ -71,15 +71,12 @@
         .config(function($mdThemingProvider, $mdIconProvider){
           $mdIconProvider
           .defaultIconSet("./assets/svg/avatars.svg", 128)
-          .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-          .icon("share"      , "./assets/svg/share.svg"       , 24)
-          .icon("favorite"   , "./assets/svg/favorite.svg"    , 24)
-          .icon("more"       , "./assets/svg/more_vert.svg"   , 24)
-          .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
-          .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
-          .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
-          .icon("phone"      , "./assets/svg/phone.svg"       , 512);
-
+          .icon("menu"       , "./assets/svg/menu.svg"                       , 24)
+          .icon("favorite"   , "./assets/svg/ic_favorite_24px.svg"           , 24)
+          .icon("unfavorite" , "./assets/svg/ic_favorite_border_24px.svg"    , 24)          
+          .icon("add"        , "./assets/svg/ic_add_24px.svg"                , 24)
+          .icon("more"       , "./assets/svg/more_vert.svg"                  , 24);
+          
           $mdThemingProvider.theme('default')
           .primaryPalette('blue')
           .accentPalette('red');

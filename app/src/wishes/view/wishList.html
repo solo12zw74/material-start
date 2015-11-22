@@ -1,0 +1,21 @@
+<div data-ng-controller="WishController as wc">
+  <md-content layout="row" layout-wrap >
+    <md-card data-ng-repeat="w in wc.wishes">
+      <img ng-src="{{w.image}}" class="md-card-image" alt="image caption">
+      <md-card-content>
+        <h2>{{w.name}}</h2>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-icon-button md-accent" aria-label="Favorite">
+          <md-icon md-svg-icon="unfavorite"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+          <md-icon md-svg-icon="more"></md-icon>
+        </md-button>
+      </md-card-actions>
+    </md-card>
+  </md-content>
+  <div style="position: fixed; right: 32px; bottom: 32px">
+    <md-button ng-click ="wc.add()" aria-label="Add..." class="md-fab md-warn"><md-icon md-svg-icon="add" ></md-icon></md-button>
+  </div>
+</div>

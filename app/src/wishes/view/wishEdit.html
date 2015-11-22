@@ -1,0 +1,17 @@
+<div ng-controller="WishController as wc">
+  <md-whiteframe class="md-whiteframe-24dp" layout layout-align="center center">
+    <md-content>
+      <md-card>
+        <img ng-src="{{wc.image}}" class="md-card-image" alt="Widh image">
+        <md-card-content>
+          <h2 class="md-title">{{w.name}}</h2>
+          <p>{{w.content}}</p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Save</md-button>
+          <md-button>Cancel</md-button>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+  </md-whiteframe>
+</div>
